@@ -7,14 +7,16 @@ RUN apt-get update \
 
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
-RUN apt-get install -y nodejs \
+RUN apt-get install -y nodejs node \
     pylint virtualenv \
     python3-dev python3-pip \
-    python-pip python-dev \
-    && ln -s /usr/bin/nodejs /usr/bin/node
+    python-pip python-dev
 
 RUN npm install npm -g
 RUN pip install -U pip && pip3 install -U pip
+
+RUN rm -rf /usr/local/lib/node_modules \
+&& rm -rf ~/.npm \
 
 RUN npm install -g pm2 \
     ddos-stress google-images-scraper \
