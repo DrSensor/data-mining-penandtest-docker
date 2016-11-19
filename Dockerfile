@@ -15,11 +15,11 @@ RUN apt-get install -y nodejs node \
 RUN npm install npm -g
 RUN pip install -U pip && pip3 install -U pip
 
-RUN rm -rf /usr/local/lib/node_modules \
-&& rm -rf ~/.npm \
+# RUN rm -rf /usr/local/lib/node_modules \
+#     && rm -rf ~/.npm \
 
 RUN npm install -g pm2 \
-    ddos-stress google-images-scraper \
+    ddos-stress images-scraper \
     phantomjs nightmare
 RUN pip install ImageScraper GoogleScraper
 
