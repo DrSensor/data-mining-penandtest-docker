@@ -1,0 +1,27 @@
+FROM ubuntu:latest
+MAINTAINER Fahmi Akbar Wildana <fahmi.akbar.w@mail.ugm.ac.id>
+
+curl -sL https://deb.nodesource.com/setup_7.x | bash -
+
+RUN apt-get install -y build-essential git openssh-server \
+    pylint virtualenv python3-dev python3-pip \
+    python-pip python-dev nodejs
+
+RUN npm install npm -g
+RUN pip install -U pip && pip3 install -U pip
+
+RUN npm install -g pm2 \
+    ddos-stress google-images-scraper \
+    phantomjs nightmare
+RUN pip install ImageScraper GoogleScraper
+
+RUN git clone https://github.com/scrapinghub/portia /app/portia && \
+    cd /app/portia && \
+    provision.sh install_deps install_splash \
+    install_python_deps configure_nginx cleanup \
+
+ENV PYTHONPATH /app/portia/slybot:/app/portia/slyd
+EXPOSE 9001
+
+WORKDIR /app/portia
+CMD service nginx start; bin/slyd -p 9002 -r /app/portia/slyd/dist
