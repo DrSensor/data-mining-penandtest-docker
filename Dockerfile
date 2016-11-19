@@ -18,9 +18,10 @@ RUN pip install -U pip && pip3 install -U pip
 # RUN rm -rf /usr/local/lib/node_modules \
 #     && rm -rf ~/.npm \
 
-RUN npm install -g pm2 \
-    ddos-stress images-scraper \
-    phantomjs nightmare
+RUN npm install -g pm2
+RUN npm install -g ddos-stress
+RUN npm install -g images-scraper
+RUN npm install -g nightmare
 RUN pip install ImageScraper GoogleScraper
 
 RUN git clone https://github.com/scrapinghub/portia /app/portia && \
