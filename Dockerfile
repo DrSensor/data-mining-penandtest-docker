@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 MAINTAINER Fahmi Akbar Wildana <fahmi.akbar.w@mail.ugm.ac.id>
 
-RUN apt-get update && apt-get install -y curl
+# RUN apt-get update && apt-get install -y curl
 
-curl -sL https://deb.nodesource.com/setup_7.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
 RUN apt-get install -y build-essential git openssh-server \
     pylint virtualenv python3-dev python3-pip \
