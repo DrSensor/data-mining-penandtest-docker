@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
-RUN apt-get install -y nodejs node \
+RUN apt-get install -y nodejs \
     pylint virtualenv \
     python3-dev python3-pip \
     python-pip python-dev
