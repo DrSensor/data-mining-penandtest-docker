@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER Fahmi Akbar Wildana <fahmi.akbar.w@mail.ugm.ac.id>
 
-# RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl
 
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
