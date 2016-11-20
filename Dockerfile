@@ -15,10 +15,12 @@ RUN apt-get install -y nodejs \
 RUN npm install npm -g
 RUN pip install -U pip && pip3 install -U pip
 
-# RUN rm -rf /usr/local/lib/node_modules \
-#     && rm -rf ~/.npm \
+RUN rm -rf /usr/local/lib/node_modules \
+    && rm -rf ~/.npm \
+    && apt-get purge -y nodejs \
+    && apt-get install -y nodejs
 
-RUN npm install -g pm2
+RUN npm install -g pm2 pm2-web
 RUN npm install -g ddos-stress
 RUN npm install -g images-scraper
 RUN npm install -g nightmare
