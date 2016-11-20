@@ -12,27 +12,19 @@ RUN apt-get install -y nodejs \
     python3-dev python3-pip \
     python-pip python-dev
 
-RUN npm install npm -g
+# RUN npm install npm -g
 RUN pip install -U pip && pip3 install -U pip
 
-RUN rm -rf /usr/local/lib/node_modules \
-    && rm -rf ~/.npm \
-    && apt-get purge -y nodejs \
-    && apt-get install -y nodejs
+# RUN rm -rf /usr/local/lib/node_modules \
+#     && rm -rf ~/.npm \
+#     && apt-get purge -y nodejs \
+#     && apt-get install -y nodejs
 
-RUN npm install -g pm2 pm2-web
-RUN npm install -g ddos-stress
-RUN npm install -g images-scraper
-RUN npm install -g nightmare
-RUN pip install ImageScraper GoogleScraper
+RUN npm install -g pm2 pm2-web \
+    ddos-stress images-scraper \
+    nightmare phantomjs
+RUN pip3 install ImageScraper GoogleScraper
 
-RUN git clone https://github.com/scrapinghub/portia /app/portia && \
-    cd /app/portia && \
-    provision.sh install_deps install_splash \
-    install_python_deps configure_nginx cleanup \
+EXPOSE 9000
 
-ENV PYTHONPATH /app/portia/slybot:/app/portia/slyd
-EXPOSE 9001
-
-WORKDIR /app/portia
-CMD service nginx start; bin/slyd -p 9002 -r /app/portia/slyd/dist
+CMD ['pm2-web']
